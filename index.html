@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sterling Crest | Invest Smarter, Grow Faster</title>
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== TYPOGRAPHY & UTILITIES ========== */
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            color: white;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .top-bar {
+            background: rgba(15, 22, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h2 {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: white;
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* ========== STATS / NUMBERS SECTION ========== */
+        .stats-showcase {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+        }
+
+        /* ========== HOW IT WORKS ========== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial p {
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* ========== DASHBOARD PAGES ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-card h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .bank-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .bank-box strong {
+            color: var(--secondary);
+        }
+
+        .policy-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .policy-box h4 {
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Investment Table */
+        .investments-table {
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            overflow-x: auto;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.2fr 1.2fr 1.2fr;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .investment-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.2fr 1.2fr 1.2fr;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            align-items: center;
+        }
+
+        .status-active {
+            background: #10b981;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+
+        .status-completed {
+            background: #6366f1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+
+        /* History Items */
+        .history-item {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 12px;
+        }
+
+        /* ========== SUCCESS POPUP ========== */
+        .success-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+            border-left: 4px solid #fff;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .stats-showcase {
+                gap: 1rem;
+            }
+            .stat-item h3 {
+                font-size: 1.2rem;
+            }
+            .table-header, .investment-row {
+                grid-template-columns: 0.8fr 0.8fr 0.8fr 1fr 1fr 1fr;
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR / NAVIGATION -->
+<div class="top-bar">
+    <div class="container nav-wrapper">
+        <div class="logo">
+            <h2>🌟 STERLING CREST</h2>
+            <p>Wealth Management & Investments</p>
+        </div>
+        <div class="nav-links">
+            <a class="nav-link active" onclick="showPage('home')">Home</a>
+            <a class="nav-link" onclick="showPage('dashboard')">Dashboard</a>
+            <a class="nav-link" onclick="showPage('invest')">Invest</a>
+            <a class="nav-link" onclick="showPage('withdraw')">Withdraw</a>
+            <a class="nav-link" onclick="showPage('support')">Support</a>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+    <!-- ========== HOME PAGE ========== -->
+    <div id="homePage" class="page active-page">
+        <section class="hero">
+            <h1>Investing is Easier!</h1>
+            <p>Providing individuals and enterprises with opportunities to invest in sophisticated ways that provide continuous income.</p>
+            <button class="btn btn-primary" onclick="showPage('invest')">Start Investing →</button>
+        </section>
+
+        <div class="stats-showcase">
+            <div class="stat-item"><h3>+100</h3><p>Markets</p></div>
+            <div class="stat-item"><h3>₦1,000</h3><p>Minimum Deposit</p></div>
+            <div class="stat-item"><h3>6% Weekly</h3><p>Growth Rate</p></div>
+            <div class="stat-item"><h3>24/7</h3><p>Customer Support</p></div>
+        </div>
+
+        <section>
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card"><div class="step-number">1</div><h3>Register</h3><p>Create your account by signing up with an email.</p></div>
+                <div class="step-card"><div class="step-number">2</div><h3>Deposit</h3><p>Fund your account with a minimum deposit of ₦1,000.</p></div>
+                <div class="step-card"><div class="step-number">3</div><h3>Invest</h3><p>Choose your investment duration and start earning 6% weekly.</p></div>
+                <div class="step-card"><div class="step-number">4</div><h3>Withdraw</h3><p>After your investment period completes, request withdrawal.</p></div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">What Our Investors Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"Sterling Crest provided clear guidance and educational resources that helped me make informed decisions. My returns have exceeded my expectations."</p>
+                    <strong>- Alex Fox</strong><br>
+                    <small>Entrepreneur</small>
+                </div>
+                <div class="testimonial">
+                    <p>"What sets Sterling Crest apart is their transparency. I appreciate the regular updates and detailed reports."</p>
+                    <strong>- Marshal Ericson</strong><br>
+                    <small>Investor</small>
+                </div>
+                <div class="testimonial">
+                    <p>"The dashboard is intuitive, and I can monitor my investments in real time."</p>
+                    <strong>- Nassim Buckredan</strong><br>
+                    <small>Digital Creator</small>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <div id="dashboardPage" class="page">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">💰 Total Portfolio</div>
+                <div class="stat-value" id="totalPortfolio">₦0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📈 Weekly Growth</div>
+                <div class="stat-value">6%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">✅ Active Investments</div>
+                <div class="stat-value" id="activeCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🏆 Total Earned</div>
+                <div class="stat-value" id="totalEarned">₦0</div>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">📋 Your Investment Portfolio</h3>
+        <div class="investments-table">
+            <div class="table-header">
+                <span>Investment ID</span>
+                <span>Date</span>
+                <span>Amount</span>
+                <span>Duration</span>
+                <span>Maturity Date</span>
+                <span>Status</span>
+            </div>
+            <div id="investmentsList"></div>
+        </div>
+    </div>
+
+    <!-- ========== INVEST PAGE ========== -->
+    <div id="investPage" class="page">
+        <div class="form-card">
+            <h2>Start Your Investment</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Fill in your details below to begin your investment journey.</p>
+            
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="phone" placeholder="09066038885">
+            </div>
+            <div class="form-group">
+                <label>Home Address *</label>
+                <input type="text" id="address" placeholder="Street, City, State">
+            </div>
+            <div class="form-group">
+                <label>Investment Amount (₦) *</label>
+                <input type="number" id="amount" placeholder="Minimum ₦1,000" min="1000">
+            </div>
+            <div class="form-group">
+                <label>Select Investment Duration *</label>
+                <select id="duration">
+                    <option value="2">2 Weeks</option>
+                    <option value="4">1 Month (4 Weeks)</option>
+                    <option value="8">2 Months (8 Weeks)</option>
+                    <option value="12">3 Months (12 Weeks)</option>
+                    <option value="24">6 Months (24 Weeks)</option>
+                    <option value="52">1 Year (52 Weeks)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Referral Code (Optional)</label>
+                <input type="text" id="referral" placeholder="Enter referral code if any">
+            </div>
+            
+            <button class="btn btn-primary" onclick="processInvestment()">💳 Proceed to Payment</button>
+            
+            <div class="bank-box">
+                <strong>⚠️ Important Instruction:</strong><br>
+                Always verify the payment name in your account and confirm the account number before sending any funds.<br><br>
+                <strong>🏦 Send payment to:</strong><br>
+                Bank: OPAY<br>
+                Account Name: FESTUS OHINOYI OHINOYI<br>
+                Account Number: 9164961938<br>
+                <small style="color: var(--secondary);">After making the transfer, upload the payment receipt for confirmation.</small>
+            </div>
+
+            <div class="policy-box">
+                <h4>📜 Withdrawal Policy</h4>
+                <p>All investments are subject to a fixed investment duration selected by the customer before activation. Customers must complete the agreed investment period before becoming eligible for withdrawal or profit release.</p>
+                <p style="margin-top: 0.5rem;">Withdrawals or fund releases cannot be processed until the selected investment period has been fully completed.</p>
+                <p style="margin-top: 0.5rem;">Once the investment duration has ended successfully, a withdrawal confirmation email will automatically be sent to the administrator for final review and approval.</p>
+                <p style="margin-top: 0.5rem;">Funds will only be released to the customer after the administrator has verified and confirmed the withdrawal request through the official confirmation email process.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== WITHDRAW PAGE ========== -->
+    <div id="withdrawPage" class="page">
+        <div class="form-card">
+            <h2>Request Withdrawal</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">⚠️ You can only withdraw investments that have completed their full duration period.</p>
+            
+            <div class="form-group">
+                <label>Select Completed Investment</label>
+                <select id="completedInvestment">
+                    <option value="">-- Select an investment to withdraw --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Withdrawal Amount (₦)</label>
+                <input type="number" id="withdrawAmount" readonly placeholder="Amount will auto-fill">
+            </div>
+            <div class="form-group">
+                <label>Bank Name *</label>
+                <input type="text" id="bankName" placeholder="e.g., OPAY, GTB, UBA, Access">
+            </div>
+            <div class="form-group">
+                <label>Account Number *</label>
+                <input type="text" id="accountNumber" placeholder="10-digit account number">
+            </div>
+            <div class="form-group">
+                <label>Account Name *</label>
+                <input type="text" id="accountName" placeholder="Account holder name">
+            </div>
+            
+            <button class="btn btn-primary" onclick="requestWithdrawal()">📤 Request Withdrawal</button>
+        </div>
+
+        <h3 style="margin: 2rem 0 1rem;">📋 Withdrawal History</h3>
+        <div id="withdrawalHistory"></div>
+    </div>
+
+    <!-- ========== SUPPORT PAGE ========== -->
+    <div id="supportPage" class="page">
+        <div class="form-card">
+            <h2>Contact Support</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Have questions or need assistance? Our support team is here to help.</p>
+            
+            <div class="form-group">
+                <label>Subject *</label>
+                <input type="text" id="ticketSubject" placeholder="What is this about?">
+            </div>
+            <div class="form-group">
+                <label>Message *</label>
+                <textarea id="ticketMessage" rows="5" placeholder="Describe your issue in detail..."></textarea>
+            </div>
+            
+            <button class="btn btn-primary" onclick="submitTicket()">📧 Submit Ticket</button>
+        </div>
+
+        <h3 style="margin: 2rem 0 1rem;">📞 Contact Information</h3>
+        <div style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 1.5rem;">
+            <p><strong>📧 Email:</strong> sterlingcrest247@gmail.com</p>
+            <p><strong>📞 Phone:</strong> 09066038885</p>
+            <p><strong>📍 Office Address:</strong> Lagos, Nigeria</p>
+            <p><strong>⏰ Business Hours:</strong> Monday - Friday, 9am - 6pm</p>
+        </div>
+
+        <h3 style="margin: 2rem 0 1rem;">📋 Your Support Tickets</h3>
+        <div id="ticketsList"></div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Sterling Crest — Nigeria's leading investment platform. | Email: sterlingcrest247@gmail.com | Phone: 09066038885</p>
+</footer>
+
+<script>
+    // ============================================================
+    // CONFIGURATION - EDIT THESE VALUES
+    // ============================================================
+    const ADMIN_EMAIL = "sterlingcrest247@gmail.com";
+    const ADMIN_PHONE = "09066038885";
+    const BANK_NAME = "OPAY";
+    const ACCOUNT_NAME = "FESTUS OHINOYI OHINOYI";
+    const ACCOUNT_NUMBER = "9164961938";
+    const MIN_WITHDRAWAL = 5000;
+
+    // Duration options in weeks
+    const DURATIONS = {
+        "2": "2 Weeks",
+        "4": "1 Month (4 Weeks)",
+        "8": "2 Months (8 Weeks)",
+        "12": "3 Months (12 Weeks)",
+        "24": "6 Months (24 Weeks)",
+        "52": "1 Year (52 Weeks)"
+    };
+
+    // ============================================================
+    // APP STATE
+    // ============================================================
+    let investments = JSON.parse(localStorage.getItem('sterling_investments') || '[]');
+    let withdrawals = JSON.parse(localStorage.getItem('sterling_withdrawals') || '[]');
+    let tickets = JSON.parse(localStorage.getItem('sterling_tickets') || '[]');
+
+    // Calculate 6% weekly growth
+    function calculateGrowth(amount, weeksInvested) {
+        let val = amount;
+        for (let i = 0; i < weeksInvested; i++) {
+            val = val * 1.06;
+        }
+        return Math.floor(val);
+    }
+
+    // Get maturity date based on duration weeks
+    function getMaturityDate(startDate, durationWeeks) {
+        let date = new Date(startDate);
+        date.setDate(date.getDate() + (durationWeeks * 7));
+        return date;
+    }
+
+    // Check if investment is completed
+    function isInvestmentCompleted(investment) {
+        let maturityDate = new Date(investment.maturityDate);
+        return new Date() >= maturityDate;
+    }
+
+    // Send email via mailto (opens email client)
+    function sendEmail(to, subject, body) {
+        let mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        // Open in new window
+        window.open(mailtoLink, '_blank');
+        console.log(`Email would be sent to: ${to}`);
+        console.log(`Subject: ${subject}`);
+        console.log(`Body: ${body}`);
+    }
+
+    // Send investment notification to admin
+    function sendInvestmentNotification(investment) {
+        let subject = `NEW INVESTMENT - ${investment.id}`;
+        let body = `INVESTMENT DETAILS:\n\n` +
+                   `Investment ID: ${investment.id}\n` +
+                   `Client Name: ${investment.name}\n` +
+                   `Email: ${investment.email}\n` +
+                   `Phone: ${investment.phone}\n` +
+                   `Address: ${investment.address}\n` +
+                   `Amount: ₦${investment.amount.toLocaleString()}\n` +
+                   `Duration: ${DURATIONS[investment.durationWeeks]}\n` +
+                   `Start Date: ${new Date(investment.date).toLocaleDateString()}\n` +
+                   `Maturity Date: ${new Date(investment.maturityDate).toLocaleDateString()}\n` +
+                   `Payment Proof: ${investment.proofUrl}\n\n` +
+                   `Please verify payment in your OPAY account (${ACCOUNT_NUMBER}) and confirm.`;
+        
+        sendEmail(ADMIN_EMAIL, subject, body);
+    }
+
+    // Send withdrawal request to admin
+    function sendWithdrawalNotification(withdrawal, investment) {
+        let subject = `WITHDRAWAL REQUEST - ${withdrawal.id}`;
+        let body = `WITHDRAWAL DETAILS:\n\n` +
+                   `Request ID: ${withdrawal.id}\n` +
+                   `Investment ID: ${investment.id}\n` +
+                   `Client Name: ${investment.name}\n` +
+                   `Client Email: ${investment.email}\n` +
+                   `Client Phone: ${investment.phone}\n` +
+                   `Original Investment: ₦${investment.amount.toLocaleString()}\n` +
+                   `Current Value: ₦${withdrawal.amount.toLocaleString()}\n` +
+                   `Bank: ${withdrawal.bankName}\n` +
+                   `Account Number: ${withdrawal.accountNumber}\n` +
+                   `Account Name: ${withdrawal.accountName}\n\n` +
+                   `Please review and process this withdrawal request.`;
+        
+        sendEmail(ADMIN_EMAIL, subject, body);
+    }
+
+    // Show success popup
+    function showSuccessPopup(message, redirectTo = null) {
+        let popup = document.createElement('div');
+        popup.className = 'success-popup';
+        popup.innerHTML = `✅ ${message}`;
+        document.body.appendChild(popup);
+        
+        setTimeout(() => {
+            popup.style.opacity = '0';
+            popup.style.transform = 'translateX(100%)';
+            setTimeout(() => popup.remove(), 300);
+        }, 5000);
+        
+        if (redirectTo) {
+            setTimeout(() => {
+                showPage(redirectTo);
+            }, 5000);
+        }
+    }
+
+    // Update dashboard statistics
+    function updateDashboard() {
+        let confirmed = investments.filter(i => i.status === 'confirmed');
+        
+        // Calculate current values with growth
+        let totalCurrent = confirmed.reduce((sum, i) => {
+            let weeksInvested = Math.floor((new Date() - new Date(i.date)) / (7 * 24 * 60 * 60 * 1000));
+            return sum + calculateGrowth(i.amount, weeksInvested);
+        }, 0);
+        
+        let totalInvested = confirmed.reduce((sum, i) => sum + i.amount, 0);
+        
+        let totalPortfolioEl = document.getElementById('totalPortfolio');
+        let activeCountEl = document.getElementById('activeCount');
+        let totalEarnedEl = document.getElementById('totalEarned');
+        
+        if (totalPortfolioEl) totalPortfolioEl.innerHTML = `₦${totalCurrent.toLocaleString()}`;
+        if (activeCountEl) activeCountEl.innerHTML = confirmed.length;
+        if (totalEarnedEl) totalEarnedEl.innerHTML = `₦${(totalCurrent - totalInvested).toLocaleString()}`;
+        
+        // Render investments list for dashboard
+        let html = '';
+        confirmed.forEach(inv => {
+            let isCompleted = isInvestmentCompleted(inv);
+            let statusClass = isCompleted ? 'status-completed' : 'status-active';
+            let statusText = isCompleted ? 'Completed ✓' : 'Active';
+            let maturityDate = new Date(inv.maturityDate).toLocaleDateString();
+            
+            html += `
+                <div class="investment-row">
+                    <span>#${inv.id.slice(-6)}</span>
+                    <span>${new Date(inv.date).toLocaleDateString()}</span>
+                    <span>₦${inv.amount.toLocaleString()}</span>
+                    <span>${DURATIONS[inv.durationWeeks]}</span>
+                    <span>${maturityDate}</span>
+                    <span><span class="${statusClass}">${statusText}</span></span>
+                </div>
+            `;
+        });
+        
+        let investmentsListEl = document.getElementById('investmentsList');
+        if (investmentsListEl) {
+            investmentsListEl.innerHTML = html || '<div style="padding:2rem;text-align:center;color:var(--text-muted);">No investments yet. Start your first investment today!</div>';
+        }
+        
+        // Update withdrawal dropdown
+        let completedInvestments = confirmed.filter(i => isInvestmentCompleted(i) && i.withdrawn !== true);
+        let dropdown = document.getElementById('completedInvestment');
+        if (dropdown) {
+            dropdown.innerHTML = '<option value="">-- Select an investment to withdraw --</option>';
+            completedInvestments.forEach((inv, idx) => {
+                let finalValue = calculateGrowth(inv.amount, inv.durationWeeks);
+                let option = document.createElement('option');
+                option.value = idx;
+                option.textContent = `#${inv.id.slice(-6)} - ₦${inv.amount.toLocaleString()} (Matured: ${new Date(inv.maturityDate).toLocaleDateString()}) - Value: ₦${finalValue.toLocaleString()}`;
+                dropdown.appendChild(option);
+            });
+            
+            // Auto-fill amount when selection changes
+            dropdown.onchange = function() {
+                let selectedIdx = this.value;
+                if (selectedIdx !== "" && completedInvestments[selectedIdx]) {
+                    let inv = completedInvestments[selectedIdx];
+                    let finalValue = calculateGrowth(inv.amount, inv.durationWeeks);
+                    document.getElementById('withdrawAmount').value = finalValue;
+                } else {
+                    document.getElementById('withdrawAmount').value = '';
+                }
+            };
+        }
+        
+        // Render withdrawal history
+        let wHtml = '';
+        withdrawals.forEach(w => {
+            let statusClass = w.status === 'approved' ? 'status-active' : (w.status === 'pending' ? 'status-pending' : 'status-completed');
+            wHtml += `<div class="history-item">₦${w.amount.toLocaleString()} - ${w.bankName} (${w.accountNumber}) - Status: <span class="${statusClass}" style="padding:2px 8px;">${w.status}</span></div>`;
+        });
+        let withdrawalHistoryEl = document.getElementById('withdrawalHistory');
+        if (withdrawalHistoryEl) {
+            withdrawalHistoryEl.innerHTML = wHtml || '<div style="padding:1rem;text-align:center;color:var(--text-muted);">No withdrawal requests yet.</div>';
+        }
+        
+        // Render tickets
+        let tHtml = '';
+        tickets.forEach(t => {
+            tHtml += `<div class="history-item"><strong>${t.subject}</strong><br>${t.message}<br><small>Status: ${t.status} | ${new Date(t.date).toLocaleString()}</small></div>`;
+        });
+        let ticketsListEl = document.getElementById('ticketsList');
+        if (ticketsListEl) {
+            ticketsListEl.innerHTML = tHtml || '<div style="padding:1rem;text-align:center;color:var(--text-muted);">No support tickets yet.</div>';
+        }
+    }
+
+    // Process investment
+    function processInvestment() {
+        let name = document.getElementById('fullName').value;
+        let email = document.getElementById('email').value;
+        let phone = document.getElementById('phone').value;
+        let address = document.getElementById('address').value;
+        let amount = parseInt(document.getElementById('amount').value);
+        let durationWeeks = parseInt(document.getElementById('duration').value);
+        
+        if (!name || !email || !phone || !address || amount < 1000) {
+            alert("Please fill all fields correctly. Minimum investment is ₦1,000.");
+            return;
+        }
+        
+        // Create file input for payment proof
+        let fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.onchange = function(e) {
+            let file = e.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    let startDate = new Date();
+                    let maturityDate = getMaturityDate(startDate, durationWeeks);
+                    
+                    let newInvestment = {
+                        id: 'INV' + Date.now(),
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        amount: amount,
+                        durationWeeks: durationWeeks,
+                        date: startDate.toISOString(),
+                        maturityDate: maturityDate.toISOString(),
+                        status: 'confirmed',
+                        withdrawn: false,
+                        proofUrl: event.target.result
+                    };
+                    
+                    investments.push(newInvestment);
+                    localStorage.setItem('sterling_investments', JSON.stringify(investments));
+                    
+                    // Send email notification to admin
+                    sendInvestmentNotification(newInvestment);
+                    
+                    // Clear form
+                    document.getElementById('fullName').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('phone').value = '';
+                    document.getElementById('address').value = '';
+                    document.getElementById('amount').value = '';
+                    document.getElementById('duration').value = '2';
+                    if (document.getElementById('referral')) document.getElementById('referral').value = '';
+                    
+                    updateDashboard();
+                    showSuccessPopup(`Investment of ₦${amount.toLocaleString()} was successful! Duration: ${DURATIONS[durationWeeks]}. Your funds are now growing at 6% weekly.`, 'dashboard');
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        fileInput.click();
+    }
+
+    // Request withdrawal
+    function requestWithdrawal() {
+        let selectedIndex = document.getElementById('completedInvestment').value;
+        let amount = parseInt(document.getElementById('withdrawAmount').value);
+        let bankName = document.getElementById('bankName').value;
+        let accNumber = document.getElementById('accountNumber').value;
+        let accName = document.getElementById('accountName').value;
+        
+        if (selectedIndex === "") {
+            alert("Please select a completed investment to withdraw");
+            return;
+        }
+        
+        if (!bankName || !accNumber || !accName) {
+            alert("Please fill all bank details");
+            return;
+        }
+        
+        let confirmed = investments.filter(i => i.status === 'confirmed' && isInvestmentCompleted(i) && i.withdrawn !== true);
+        let selectedInvestment = confirmed[selectedIndex];
+        
+        if (!selectedInvestment) {
+            alert("Please select a valid completed investment");
+            return;
+        }
+        
+        if (amount < MIN_WITHDRAWAL) {
+            alert(`Minimum withdrawal amount is ₦${MIN_WITHDRAWAL.toLocaleString()}`);
+            return;
+        }
+        
+        let withdrawal = {
+            id: 'WD' + Date.now(),
+            investmentId: selectedInvestment.id,
+            amount: amount,
+            bankName: bankName,
+            accountNumber: accNumber,
+            accountName: accName,
+            date: new Date().toISOString(),
+            status: 'pending'
+        };
+        
+        withdrawals.push(withdrawal);
+        localStorage.setItem('sterling_withdrawals', JSON.stringify(withdrawals));
+        
+        // Mark investment as withdrawn
+        let investmentIndex = investments.findIndex(i => i.id === selectedInvestment.id);
+        if (investmentIndex !== -1) {
+            investments[investmentIndex].withdrawn = true;
+            investments[investmentIndex].withdrawalRequested = withdrawal.id;
+            localStorage.setItem('sterling_investments', JSON.stringify(investments));
+        }
+        
+        // Send withdrawal notification to admin
+        sendWithdrawalNotification(withdrawal, selectedInvestment);
+        
+        // Clear form
+        document.getElementById('completedInvestment').value = '';
+        document.getElementById('withdrawAmount').value = '';
+        document.getElementById('bankName').value = '';
+        document.getElementById('accountNumber').value = '';
+        document.getElementById('accountName').value = '';
+        
+        updateDashboard();
+        showSuccessPopup(`Withdrawal request of ₦${amount.toLocaleString()} submitted successfully! Admin will review and process.`, 'dashboard');
+    }
+
+    // Submit support ticket
+    function submitTicket() {
+        let subject = document.getElementById('ticketSubject').value;
+        let message = document.getElementById('ticketMessage').value;
+        
+        if (!subject || !message) {
+            alert("Please fill both subject and message fields");
+            return;
+        }
+        
+        let ticket = {
+            id: 'TCK' + Date.now(),
+            subject: subject,
+            message: message,
+            date: new Date().toISOString(),
+            status: 'open'
+        };
+        
+        tickets.push(ticket);
+        localStorage.setItem('sterling_tickets', JSON.stringify(tickets));
+        
+        // Also email admin about support ticket
+        let emailSubject = `SUPPORT TICKET - ${ticket.id}`;
+        let emailBody = `New support ticket received:\n\nSubject: ${subject}\nMessage: ${message}\n\nPlease respond to this customer.`;
+        sendEmail(ADMIN_EMAIL, emailSubject, emailBody);
+        
+        // Clear form
+        document.getElementById('ticketSubject').value = '';
+        document.getElementById('ticketMessage').value = '';
+        
+        updateDashboard();
+        showSuccessPopup(`Support ticket submitted! We'll respond within 24 hours.`, 'dashboard');
+    }
+
+    // Show page function
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active-page');
+        });
+        
+        // Show selected page
+        let selectedPage = document.getElementById(`${pageId}Page`);
+        if (selectedPage) {
+            selectedPage.classList.add('active-page');
+        }
+        
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Find and highlight the clicked nav link
+        let navLinks = document.querySelectorAll('.nav-link');
+        let pageMapping = {
+            'home': 0,
+            'dashboard': 1,
+            'invest': 2,
+            'withdraw': 3,
+            'support': 4
+        };
+        
+        if (navLinks[pageMapping[pageId]]) {
+            navLinks[pageMapping[pageId]].classList.add('active');
+        }
+        
+        // Update dashboard if needed
+        if (pageId !== 'home') {
+            updateDashboard();
+        }
+    }
+
+    // Auto-update dashboard every minute
+    setInterval(updateDashboard, 60000);
+    
+    // Initial load
+    updateDashboard();
+</script>
+</body>
+</html>
